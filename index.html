@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pecado ou Fuga</title>
+    <!-- Link para o Tailwind CSS (Framework de Estilo) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Link para fontes do Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Link para seu arquivo de CSS customizado -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 flex flex-col items-center justify-center min-h-screen p-4">
+
+    <h1 class="font-creepster text-5xl md:text-7xl text-purple-500 mb-4 text-center tracking-wider">Pecado ou Fuga</h1>
+
+    <div class="w-full max-w-7xl mx-auto">
+        <!-- Seção de Informações dos Jogadores -->
+        <div id="players-info" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <!-- Cards de informação dos jogadores serão inseridos aqui via JS -->
+        </div>
+
+        <!-- Tabuleiro do Jogo -->
+        <div id="game-board" class="board"></div>
+
+        <!-- Seção de Controles -->
+        <div id="controls" class="flex flex-col md:flex-row items-center justify-center gap-4 mt-4 p-4 bg-gray-800 rounded-lg shadow-lg">
+             <div class="text-center">
+                <p class="text-lg font-bold">Jogador Atual:</p>
+                <p id="current-player-name" class="text-2xl font-bold text-yellow-400">-</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="roll-dice-btn" class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300 shadow-md disabled:bg-gray-500 disabled:cursor-not-allowed">Lançar Dado</button>
+                <div id="dice-result" class="text-4xl font-bold text-white w-16 h-16 bg-gray-700 rounded-md flex items-center justify-center">-</div>
+            </div>
+             <div class="text-center">
+                <p class="text-lg font-bold">Ações:</p>
+                <p id="game-message" class="text-lg text-gray-300">Selecione uma classe para iniciar.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para exibir a Carta -->
+    <div id="card-modal" class="fixed inset-0 modal-bg items-center justify-center hidden">
+        <div class="bg-gray-800 rounded-lg shadow-2xl p-6 w-11/12 md:w-1/3 text-center border-4 border-purple-500">
+            <h2 id="card-type" class="text-3xl font-bold mb-4 font-creepster"></h2>
+            <p id="card-description" class="mb-6 text-lg"></p>
+            <div id="card-actions" class="flex justify-center gap-4">
+                <!-- Botões de ação da carta serão inseridos aqui via JS -->
+            </div>
+        </div>
+    </div>
+
+     <!-- Modal para Seleção de Classe -->
+    <div id="class-selection-modal" class="fixed inset-0 modal-bg flex items-center justify-center">
+        <div class="bg-gray-800 rounded-lg shadow-2xl p-6 w-11/12 md:w-2/3 text-center border-4 border-yellow-500">
+            <h2 class="text-3xl font-bold mb-4 font-creepster">Escolha as Classes</h2>
+            <p class="mb-6 text-lg">Cada jogador deve escolher uma classe para começar a jornada.</p>
+            <div id="class-selection-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                 <!-- Opções de classe serão inseridas aqui via JS -->
+            </div>
+            <button id="start-game-btn" class="mt-6 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 shadow-md">Iniciar Jogo</button>
+        </div>
+    </div>
+
+    <!-- Link para seu arquivo de JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
