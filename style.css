@@ -1,84 +1,23 @@
-/* Configurações gerais do corpo da página */
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #1a1a1a;
-    color: #f0f0f0;
+/* Estilos básicos para centralizar o jogo na tela */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a; /* Um fundo escuro para destacar o jogo */
+    font-family: sans-serif;
+    /* Impede que a página seja arrastada, útil para jogos */
+    overflow: hidden; 
 }
 
-/* Estilo da fonte especial para títulos */
-.font-creepster {
-    font-family: 'Creepster', cursive;
-}
-
-/* Estilo do tabuleiro */
-.board {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 5px;
-    border: 4px solid #4a044e; /* Borda roxa escura */
-    background-color: #1f2937; /* Fundo cinza escuro */
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(136, 19, 55, 0.5); /* Sombra avermelhada */
-    max-width: 90vw;
-    margin: 20px auto;
-}
-
-/* Estilo de cada casa do tabuleiro */
-.cell {
-    width: 100%;
-    padding-bottom: 100%; /* Mantém a proporção quadrada */
-    background-color: #374151; /* Cor cinza média */
-    border: 1px solid #4b5563;
-    position: relative;
-    border-radius: 5px;
+#game-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: clamp(0.5rem, 2vw, 1.2rem); /* Tamanho de fonte responsivo */
-    color: white;
-    font-weight: bold;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
-/* Estilos de casas especiais */
-.cell.start { background-color: #166534; } /* Verde para início */
-.cell.end { background-color: #be123c; }   /* Vermelho para fim */
-.cell.bazar { background-color: #ca8a04; } /* Amarelo para bazar */
-.cell.atalho { background-color: #6d28d9; } /* Roxo para atalho */
-
-/* Estilo dos pinos dos jogadores */
-.player-token {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 30%;
-    height: 30%;
-    border-radius: 50%;
-    border: 2px solid white;
-    transform: translate(-50%, -50%);
-    transition: all 0.5s ease-in-out;
-    z-index: 10;
-}
-
-/* Cores específicas para cada jogador */
-.player-1 { background-color: #ef4444; } /* Vermelho */
-.player-2 { background-color: #3b82f6; } /* Azul */
-.player-3 { background-color: #22c55e; } /* Verde */
-.player-4 { background-color: #eab308; } /* Amarelo */
-
-/* Estilo das cartas */
-.card {
-    background-color: #262626;
-    border: 2px solid #525252;
-    transition: transform 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-10px) scale(1.05);
-    border-color: #a3a3a3;
-}
-
-/* Fundo do modal (efeito de escurecimento) */
-.modal-bg {
-    background-color: rgba(0,0,0,0.7);
+canvas {
+    border-radius: 8px; /* Bordas arredondadas para o canvas */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); /* Uma sombra sutil */
 }
