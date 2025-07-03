@@ -1,0 +1,186 @@
+Game Design Document (GDD): Pecado ou Fuga
+Versão: 1.0
+Jogo por: (DeV-ictor/ SouoV_)
+
+1. Visão Geral do Jogo
+1.1. Conceito Central
+"Pecado ou Fuga" é um jogo de tabuleiro digital multiplayer para 2 a 6 jogadores. Os jogadores assumem o papel de almas presas no Limbo que devem escolher um de dois caminhos — a trilha da Redenção pelo Purgatório ou a da Condenação pelo Inferno — para escapar. O jogo combina sorte (rolagem de dados), estratégia (uso de habilidades de classe e itens), e desafios interativos (cartas de Provação) em uma corrida para o fim do tabuleiro, enquanto gerenciam seu "Pecadômetro" (medidor de reputação moral).
+
+1.2. Tema e Estilo
+Uma comédia sombria com uma estética cartunesca e exagerada, inspirada em visões clássicas e satíricas do pós-vida. A arte, como vista no tabuleiro conceitual, mistura o macabro com o vibrante, criando um universo único e memorável. O tom é irreverente e focado na interação caótica entre os jogadores.
+
+1.3. Público-Alvo
+Grupos de amigos que gostam de jogos de tabuleiro digitais como The Game of Life 2, Mario Party e Jackbox Games, que valorizam a interação social, a competitividade amigável e reviravoltas inesperadas.
+
+1.4. Plataforma
+Web (HTML5/JavaScript). O jogo será acessível através de um link em qualquer navegador moderno, otimizado para desktops.
+
+2. Mecânicas Principais
+2.1. Objetivo do Jogo
+Ser o primeiro jogador a chegar à casa final de um dos dois caminhos (Purgatório ou Inferno) com o maior "Pecadômetro" possível. A vitória não é apenas sobre chegar primeiro, mas sobre como você chega lá.
+
+2.2. Fluxo de uma Rodada
+O jogo prossegue em turnos. No seu turno, o jogador executa os seguintes passos:
+
+Fase de Início de Turno: Habilidades passivas ou de início de turno de outros jogadores podem ser ativadas (ex: a "Caça de Almas" da Pistoleira).
+
+Rolar o Dado: O jogador clica no dado para rolar um valor de 1 a 6.
+
+Puxar uma Carta: O jogador puxa uma carta do baralho unificado de "Provação" e "Penitência".
+
+Tomar uma Decisão (se a carta for de Provação):
+
+Encarar o Desafio: O jogador tenta cumprir o desafio. Se conseguir, avança o número total de casas do dado e ganha o Pecadômetro indicado na carta.
+
+Arregar: O jogador se recusa a fazer o desafio. Ele avança metade do valor do dado (arredondado para baixo) e puxa uma carta de "Penitência" como punição.
+
+Resolver a Carta de Penitência: Se uma carta de Penitência for puxada (seja diretamente ou por "arregar"), seus efeitos são aplicados imediatamente.
+
+Movimentação: O peão do jogador se move no tabuleiro.
+
+Efeito da Casa: Se a casa onde o jogador parou tiver um efeito especial (atalho, loja, etc.), ele é resolvido.
+
+Fim do Turno: O turno passa para o próximo jogador.
+
+2.3. O Pecadômetro (Reputação)
+
+É a "moeda moral" do jogo, um valor numérico que pode ser positivo ou negativo.
+
+Ganha-se: Cumprindo Provações, usando certas habilidades/itens.
+
+Perde-se: Falhando em Provações, recebendo Penitências, usando certas habilidades/itens.
+
+Utilidade:
+
+Comprar itens no "Bazar do Diabão".
+
+Acessar atalhos específicos (ex: um atalho no Purgatório pode exigir Pecadômetro positivo).
+
+Critério de desempate e condição de vitória.
+
+Zerar o Pecadômetro: Se o Pecadômetro de um jogador chegar a um valor crítico negativo (ex: -10), ele é punido severamente, podendo até voltar para o início (Limbo).
+
+2.4. Condições de Vitória e Derrota
+
+Vitória: O jogo termina quando o primeiro jogador alcança a última casa (48) de qualquer um dos caminhos. O vencedor é determinado pela seguinte ordem:
+
+O jogador que chegou ao final.
+
+Em caso de múltiplos jogadores chegarem na mesma rodada, vence aquele com o maior Pecadômetro.
+
+Derrota (Individual): Um jogador é eliminado da partida se acumular um número máximo de cartas de "Penitência" ativas (ex: 3 ou 4). Ele se torna um "Memento Mori", um fantasma no tabuleiro que pode (opcionalmente) assombrar os outros jogadores de forma limitada.
+
+3. Personagens e Classes
+Cada jogador escolhe uma classe no início do jogo, cada uma com habilidades únicas.
+
+Sucumbido: Ganha bônus de movimento quando seu Pecadômetro está negativo.
+
+Coveiro: Pode "enterrar" uma carta para forçar outro jogador a enfrentá-la mais tarde.
+
+Comédia: Pode manipular os valores do dado e do Pecadômetro em sua rodada.
+
+Alma Gêmea: Pode chamar outro jogador para fazer um desafio em dupla, com bônus ou penalidades para ambos.
+
+Pistoleira: Pode "marcar" um alvo e roubar suas recompensas se ele falhar. Também pode puxar jogadores para perto.
+
+Carcereiro: Pode prender jogadores por uma rodada ou anular suas vantagens.
+
+Vampiro da Seita: Pode roubar casas ou Pecadômetro de outro jogador.
+
+Arauto do Esterco: Pode criar um checkpoint pessoal no tabuleiro.
+
+Nuloh: Pode copiar a habilidade de qualquer outra classe (limitado).
+
+Empanado: Pode inverter os efeitos da rodada ou o fluxo do tabuleiro para todos, exceto ele.
+
+Milequth: Pode fazer pactos com outros jogadores, trocando favores por um preço. Também pode forçar todos a puxarem uma carta extra.
+
+4. Elementos do Jogo
+4.1. O Tabuleiro
+
+Ponto de Partida: Uma área central chamada "O Limbo".
+
+Ramificação: Do Limbo, o jogador deve escolher um de dois caminhos:
+
+Caminho do Inferno (Inferior): Focado em riscos maiores, recompensas maiores, e interações mais agressivas. Atalhos podem custar Pecadômetro.
+
+Caminho do Purgatório (Superior): Focado em desafios de redenção, com um progresso talvez mais lento, mas mais seguro. Atalhos podem exigir Pecadômetro positivo.
+
+Estrutura: Cada caminho tem 48 casas.
+
+Casas Especiais:
+
+Casa de Atalho: Permite ao jogador pular várias casas para frente.
+
+Casa de Azar: Força o jogador a voltar várias casas ou puxar uma carta de Penitência.
+
+Bazar do Diabão: Uma casa de loja onde os jogadores podem gastar Pecadômetro para comprar cartas do "Arsenal Maldito".
+
+Checkpoints: Pontos seguros no tabuleiro.
+
+4.2. Cartas
+
+Baralho Único: Todas as cartas de Provação e Penitência são embaralhadas juntas para aumentar a imprevisibilidade.
+
+Exemplos de Cartas de Provação (Desafio):
+
+"Confissão Pública": Revele ao grupo um pequeno segredo embaraçoso. (+3 Pecadômetro, avanço total).
+
+"Duelo de Insultos": Escolha um jogador e troque insultos (de brincadeira!) por 30 segundos. O grupo decide o vencedor. (+4 Pecadômetro, avanço total).
+
+"Pantomima Profana": Faça uma mímica do seu maior medo. (+2 Pecadômetro, avanço total).
+
+Exemplos de Cartas de Penitência (Castigo):
+
+"Correntes da Culpa": Na sua próxima rodada, você só pode andar metade do valor do dado. (Dura 1 rodada).
+
+"Língua Maldita": Você não pode falar até o seu próximo turno. Se falar, perca 2 pontos de Pecadômetro. (Dura 1 rodada).
+
+"Dívida Eterna": Perca 5 pontos de Pecadômetro imediatamente. (Efeito instantâneo).
+
+Arsenal Maldito (Itens da Loja):
+
+"Dado Viciado": Escolha o resultado do seu próximo dado.
+
+"Manto da Invisibilidade": Ignore o efeito da próxima carta de Penitência que você puxar.
+
+"Empurrãozinho do Capeta": Force um jogador a andar 3 casas para trás.
+
+5. Interface do Usuário (UI) e Experiência (UX)
+Layout da Tela:
+
+Centro: O tabuleiro do jogo, com os peões dos jogadores claramente visíveis.
+
+Lateral/Inferior: Uma área para exibir a lista de jogadores. Cada jogador terá seu personagem, nome, e o "Pecadômetro" atual visível para todos.
+
+Canto Inferior Direito: O dado para ser rolado, o baralho de cartas e um botão para usar habilidades.
+
+Pop-ups: Cartas e desafios aparecerão no centro da tela de forma clara e legível quando puxadas.
+
+Chat: Uma janela de chat para os jogadores se comunicarem.
+
+6. Direção de Arte e Som
+Arte: Seguir o estilo sombrio, detalhado e cartunesco da imagem conceitual. Personagens com silhuetas distintas e expressivas. Cores vibrantes (vermelhos, laranjas, roxos) para o Inferno e cores mais dessaturadas e etéreas (azuis, cinzas, brancos) para o Purgatório.
+
+Animações: Simples e fluidas. Movimento do peão, dado rolando, cartas virando, efeitos visuais para habilidades.
+
+Som:
+
+Música: Uma trilha sonora ambiente para cada caminho (mais pesada e rítmica para o Inferno, mais melancólica e coral para o Purgatório).
+
+Efeitos Sonoros: Sons satisfatórios para rolar o dado, puxar cartas, ganhar/perder Pecadômetro, e usar habilidades.
+
+7. Especificações Técnicas
+Engine/Linguagem: HTML5, CSS e JavaScript (Rota A).
+
+Framework Gráfico: Phaser.js ou PixiJS para renderizar o jogo.
+
+Multiplayer e Backend: Firebase (Firestore Realtime Database).
+
+Será usado para sincronizar o estado do jogo (posições, Pecadômetro, turno atual) entre todos os jogadores em tempo real.
+
+Utilizará o sistema de autenticação do Firebase para criar salas de jogo privadas.
+
+Hospedagem Inicial: Replit, para prototipagem e testes rápidos.
+
+Hospedagem Final: Plataformas de hospedagem de sites estáticos como Netlify, Vercel ou GitHub Pages (opções gratuitas e de baixo custo).
