@@ -1,0 +1,44 @@
+{
+  "cartas": [
+    {
+      "id": "prov_001",
+      "tipo": "provacao",
+      "titulo": "Confissão Pública",
+      "descricao": "Revele ao grupo um pequeno segredo embaraçoso.",
+      "efeito": {
+        "pecadometro": 3,
+        "movimento": "total"
+      }
+    },
+    {
+      "id": "prov_002",
+      "tipo": "provacao",
+      "titulo": "Duelo de Insultos",
+      "descricao": "Escolha um jogador e troque insultos (de brincadeira!) por 30 segundos. O grupo decide o vencedor.",
+      "efeito": {
+        "pecadometro": 4,
+        "movimento": "total"
+      }
+    },
+    {
+      "id": "peni_001",
+      "tipo": "penitencia",
+      "titulo": "Correntes da Culpa",
+      "descricao": "Na sua próxima rodada, você só pode andar metade do valor do dado.",
+      "efeito": {
+        "pecadometro": 0,
+        "modificador_turno": "metade_movimento"
+      }
+    },
+    {
+      "id": "peni_002",
+      "tipo": "penitencia",
+      "titulo": "Dívida Eterna",
+      "descricao": "O peso dos seus atos recai sobre você. Perca 5 pontos de Pecadômetro imediatamente.",
+      "efeito": {
+        "pecadometro": -5,
+        "modificador_turno": null
+      }
+    }
+  ]
+}
