@@ -12,12 +12,12 @@ class PreloadScene extends Phaser.Scene {
         let progressBar = this.add.graphics();
         let progressBox = this.add.graphics();
         progressBox.fillStyle(0x333333, 0.8);
-        progressBox.fillRect(240, 270, 320, 50);
+        progressBox.fillRect(340, 270, 320, 50); // Ajustado para tela maior
 
         this.load.on('progress', function (value) {
             progressBar.clear();
             progressBar.fillStyle(0xffffff, 1);
-            progressBar.fillRect(250, 280, 300 * value, 30);
+            progressBar.fillRect(350, 280, 300 * value, 30); // Ajustado
         });
 
         this.load.on('complete', function () {
@@ -28,25 +28,22 @@ class PreloadScene extends Phaser.Scene {
         // --- INÍCIO DA ÁREA DE CARREGAMENTO DE RECURSOS ---
 
         // Carrega o arquivo JSON com os dados das cartas
-        // Coloque o arquivo 'cartas.json' na mesma pasta que este HTML por enquanto
         this.load.json('cardData', 'cartas.json');
 
-        // Carrega as imagens (substitua 'caminho/para/...' pelos nomes dos seus arquivos)
-        // É uma boa prática criar uma pasta 'assets' para organizar suas imagens
+        // --- CARREGAMENTO PARA O MAPA DO TILED ---
+        // 1. Carregue a imagem do seu tileset (o conjunto de "azulejos" que você usa no Tiled)
+        // this.load.image('tileset_inferno', 'assets/maps/tileset_inferno.png');
 
-        // Exemplo para o tabuleiro
-        // this.load.image('tabuleiro', 'assets/tabuleiro_isometrico.png');
+        // 2. Carregue o arquivo JSON exportado do Tiled
+        // this.load.tilemapTiledJSON('mapa_inferno', 'assets/maps/mapa_inferno.json');
 
+
+        // --- CARREGAMENTO DE OUTROS RECURSOS ---
         // Exemplo para as molduras das cartas
-        // this.load.image('molduraProvacao', 'assets/moldura_provacao.png');
-        // this.load.image('molduraPenitencia', 'assets/moldura_penitencia.png');
+        // this.load.image('molduraProvacao', 'assets/ui/moldura_provacao.png');
 
-        // Exemplo para os personagens (spritesheets são melhores para animações)
-        // this.load.image('personagem1', 'assets/personagem_sucumbido.png');
-        // this.load.image('personagem2', 'assets/personagem_coveiro.png');
-
-        // Exemplo para o dado
-        // this.load.spritesheet('dado', 'assets/dado_spritesheet.png', { frameWidth: 100, frameHeight: 100 });
+        // Exemplo para os personagens
+        // this.load.image('personagem1', 'assets/sprites/personagem_sucumbido.png');
 
         // --- FIM DA ÁREA DE CARREGAMENTO DE RECURSOS ---
     }
@@ -65,48 +62,49 @@ class PreloadScene extends Phaser.Scene {
 class GameScene extends Phaser.Scene {
     constructor() {
         super('GameScene');
+        this.pathPoints = {}; // Objeto para guardar as coordenadas do caminho
     }
 
     create() {
         // Define uma cor de fundo para a cena
         this.cameras.main.setBackgroundColor('#2d2d2d');
 
-        // Adiciona um texto de boas-vindas
-        this.add.text(400, 50, 'Pecado ou Fuga - MVP', {
-            fontSize: '32px',
-            color: '#ffffff',
-            fontStyle: 'bold'
-        }).setOrigin(0.5);
-
-        // Acessa os dados das cartas que foram carregados
-        const cardData = this.cache.json.get('cardData');
-        console.log("Dados das cartas carregados:", cardData.cartas);
-
         // --- AQUI COMEÇA A LÓGICA DO SEU JOGO ---
 
-        // 1. RENDERIZAR O TABULEIRO
-        // Ex: this.add.image(400, 300, 'tabuleiro');
+        // 1. CRIAR O MAPA A PARTIR DOS DADOS DO TILED
+        // const map = this.make.tilemap({ key: 'mapa_inferno' });
+        // const tileset = map.addTilesetImage('nome_do_tileset_no_tiled', 'tileset_inferno');
+        
+        // 2. RENDERIZAR AS CAMADAS DO MAPA
+        // A ordem importa: desenhe o fundo primeiro!
+        // map.createLayer('BackgroundLayer', tileset, 0, 0);
+        // const pathLayer = map.createLayer('PathLayer', tileset, 0, 0);
 
-        // 2. CRIAR OS JOGADORES
-        // Ex: let jogador1 = this.add.sprite(100, 100, 'personagem1');
+        // 3. EXTRAIR OS PONTOS DO CAMINHO DO OBJECT LAYER
+        // const objectLayer = map.getObjectLayer('ObjectLayer');
+        // objectLayer.objects.forEach(obj => {
+        //     // Armazena a posição de cada casa usando o nome que você deu no Tiled
+        //     this.pathPoints[obj.name] = { x: obj.x, y: obj.y };
+        // });
+        // console.log("Pontos do caminho extraídos:", this.pathPoints);
 
-        // 3. DEFINIR O CAMINHO NO TABULEIRO
-        // Crie um array de coordenadas (x, y) para cada casa do tabuleiro.
-        // Isso será essencial para mover os peões.
-        // Ex: const caminhoInferno = [ {x: 150, y: 200}, {x: 200, y: 220}, ... ];
+        // Agora, para mover um jogador para a casa "inferno_casa_05", você faria:
+        // let targetPosition = this.pathPoints['inferno_casa_05'];
+        // jogador.setPosition(targetPosition.x, targetPosition.y);
 
-        // 4. IMPLEMENTAR O SISTEMA DE TURNOS
-        // Crie variáveis para controlar de quem é a vez.
 
-        // 5. CRIAR O DADO E A LÓGICA DE ROLAGEM
-
-        // 6. CRIAR A LÓGICA PARA PUXAR E EXIBIR AS CARTAS
-        // Use os dados do `cardData` para preencher as molduras com os textos.
+        // 4. CRIAR OS JOGADORES
+        // let jogador1 = this.add.sprite(0, 0, 'personagem1');
+        // Posicione o jogador no início
+        // let startPosition = this.pathPoints['inferno_casa_01'];
+        // jogador1.setPosition(startPosition.x, startPosition.y);
+        
+        // Lembre-se do Depth Sorting para o 2.5D!
+        // jogador1.setDepth(jogador1.y);
     }
 
     update() {
         // Loop do jogo, executado a cada frame.
-        // Útil para animações e verificar interações contínuas.
     }
 }
 
@@ -116,11 +114,18 @@ class GameScene extends Phaser.Scene {
 // Define as configurações globais do jogo
 // =================================================================
 const config = {
-    type: Phaser.AUTO, // Phaser decide se usa WebGL ou Canvas
-    width: 800,
-    height: 600,
-    parent: 'game-container', // ID do container no HTML
-    scene: [PreloadScene, GameScene] // Lista de cenas do jogo
+    type: Phaser.AUTO,
+    width: 1024, // Aumentei um pouco a resolução para mapas maiores
+    height: 768,
+    parent: 'game-container',
+    scene: [PreloadScene, GameScene],
+    physics: { // Habilitar a física pode ser útil no futuro
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 0 },
+            debug: false
+        }
+    }
 };
 
 // Cria a instância do jogo
